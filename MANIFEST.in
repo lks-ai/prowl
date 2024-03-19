@@ -1,0 +1,11 @@
+include README.md
+include LICENSE
+
+# Include all files under the examples and docs directories
+recursive-include tools *
+recursive-include prompts *
+
+# Exclude all bytecode
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude __pycache__/*
