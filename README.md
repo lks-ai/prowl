@@ -81,28 +81,26 @@ from lib.prowl import prowl
 
 template = "... the text from the above script ..."
 mood = "Severely Happy"
-result = prowl.fill(template, inputs={mood: mood})
+result = prowl.fill(template, inputs={"mood": mood})
 
 print(result.completion) # output the filled out prompt
 print(result.get()) # print a simple dictionary of final variable values
 ```
-Let's look at another way to run that in python, using ProwlStack. In fact, you can find that same example `.prowl` script in the `prompts/world/creative.prowl` in this repository, so let's point the stack at that folder ad then run `creative` followed by another `tot` (tree of thought, which you'll also find in that folder).
+Let's look at another way to run that in python, using ProwlStack. In fact, you can find that same example `.prowl` script in the `prompts/monster/monster.prowl` in this repository, so let's point the stack at that folder ad then run `creative` followed by another `tot` (tree of thought, which you'll find in `prompts/thought/`).
 ```python
 from lib.stack import ProwlStack
 
-stack = ProwlStack("prompts/world/")
+stack = ProwlStack(folder=["prompts/monster/", "prompts/thought/"])
 
-result = asyncio.run(stack.run(['creative', 'tot'], prepend=True))
+result = asyncio.run(stack.run(['monster', 'tot']))
 
 print(result.completion) # output the filled out prompt
 print(result.get()) # print a simple dictionary of final variable values
 ```
-Here I use `prepend=True` to signify that I do want to continue the prompt conditioning through the entire stack run. Otherwise only the variables would pass from one script to the next.
-
 You can quickly see that adding more and more of these scripts would be a hassle only using them as strings just using `prowl` but with `ProwlStack` I can set up completely different orders of these prowl scripts to run at any point I want, with the same return format.
 
 # Using Tools
-Ever since the stone age, and possibly before, humans have been using tools... etc. Now LLM's can use tools and everyone is generally happy about this. Here are some examples of using some built in `ProwlTool`s in your scripts.
+Ever since the stone age, and possibly before, humans have been using tools. Now LLM's can use tools and everyone is generally happy about this. Here are some examples of using some built in `ProwlTool`s in your scripts.
 
 ```prowl
 # Make an Image
