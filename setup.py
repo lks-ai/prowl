@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='prowl',
+    name='prompt-owl',
     version='0.1.0',
     packages=find_packages(),
     install_requires=[
@@ -15,8 +15,8 @@ setup(
         ],
     },
     # Additional metadata
-    author='Nathaniel',
-    author_email='nathaniel@example.com',
+    author='LoreKeeper Ltd',
+    author_email='nathaniel@lorekeeper.co.uk',
     description='A Declarative Prompting Language for LLMs',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
