@@ -1,0 +1,29 @@
+# Create Python Program
+
+## User Reuirements Check
+Make a numbered list of requirements for building the program:
+{program_requirements(300, 0.5)}
+
+## Program Scope
+Is this a small program or a large framework? Write one paragraph about this program's scope:
+{program_scope(120, 0.3)}
+
+## Class Planning
+Write an inclusive step-by-step numbered overview of the program structure that will be needed in order to complete this task. Write about the elemental classes you will need to build the program:
+{program_overview(320, 0.2)}
+
+## Needed Libraries
+Give a bullet list of all of the needed libraries or modules:
+{program_requirements(180, 0.2)}
+
+## Program Main EntryPoint
+Even though the classes described do not exist yet, write the initial entry point script:
+```{program_language}
+{program_code(360, 0.1)}
+
+```
+
+# Coding
+Write some code for classes listed above
+
+{@each(program_overview, code_step)}

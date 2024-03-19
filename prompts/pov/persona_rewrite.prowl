@@ -1,0 +1,20 @@
+# Change of Writing Perspective
+Take the persona outlined above and rewrite a message from the user as them.
+
+## Input Message
+This is the input message from the user:
+{user_message}
+
+## Think Critically
+Write a numbered list of critical questions about how to rewrite the user messge from the persona's point of view:
+1. How would the persona express themselves when saying this?
+2. What biases does the persona have and how does that affect their self expression when saying this?
+3. What speech patterns does the persona most likely have based on their attributes?
+
+## Answer Creatively
+Write a numbered list answering the critical quesitons above:
+{crit_answers(200, 0.25)}
+
+## Write the Message
+Using your answers, rewrite the user message in a way that captures it's original meaning while changing it's style to how the persona would say it instead:
+{persona_message(2048, 0.1)}

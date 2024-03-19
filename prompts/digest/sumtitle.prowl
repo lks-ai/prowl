@@ -1,0 +1,11 @@
+# Create a Title
+Come up with a title for the following summary.
+
+## Summary
+```
+{summary}
+```
+
+## Summary Title
+Write an concise and explanatory title to the summary above. Write no more than five words:
+- Title: {summary_title(15, 0.3)}

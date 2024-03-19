@@ -1,0 +1,16 @@
+## Think Logically
+Write a numbered list of exactly {num_questions} critical questions focusing on and questioning the nature of what was written above. Be critical and ask questions which will lead to answers that will further enrich the story, filling in gaps in logic. The questions should be ranked by most important missing information first:
+{crit_questions(500, 0.2)}
+
+## Answer Context
+This section provides answers for each of the questions above.
+
+{@each(crit_questions, raganswers)}
+
+## User Request Reminder
+{user_request}
+
+## Summarize
+Write a concise single paragraph which summarizes your answers above and attempts to fulfill the user request:
+{ragtot_summary(320, 0.1)}
+

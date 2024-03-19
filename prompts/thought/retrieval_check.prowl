@@ -1,0 +1,11 @@
+# Context Check
+This context section should hold information relevant to the above text.
+{context}
+
+## Think Critically
+Compare the information from Context and the text above it, does the context provide enough information in order to formulate a response? Keep your answer concise and no longer than one or two sentences:
+{context_critical(100, 0.05)}
+
+## Get New Context?
+Reply with (Y or N). Given your critical thoughts, do you need more context information?
+{needs_context(1, 0.0)}

@@ -1,0 +1,11 @@
+# Entity Extraction
+Read the following story snippet and create a list of characters, locations and items mentioned. Use full or long-form names if necessary to distinguish between entities. Be sure to list what type each entity is like `- NAME OF ENTITY (TYPE): DESCRIPTION`
+
+## Story:
+
+{story}
+
+## List of Characters, Locations and Items:
+
+{character_list(300, 0.1)}
+

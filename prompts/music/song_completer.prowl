@@ -1,0 +1,20 @@
+# Complete the Song
+Identify the song that the user has input lyrics to.
+
+## Think Critically
+Write a numbered list of up to seven known songs these lyrics could be a part of:
+{song_crit_possible(300, 0.4)}
+
+## Choose a Song
+Make your choice of which song the user was referring to with those lyrics.
+
+### Identified Song Details
+- Song Title: {song_title(20, 0.1)}
+- Artist: {song_artist(10, 0.1)}
+- Year: {song_year(4, 0.0)}
+
+## Lyrics
+Write the full song lyrics:
+
+{song_lyrics(800, 0.0)}
+

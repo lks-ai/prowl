@@ -1,0 +1,10 @@
+# Knowledge Extraction
+Extract a knowledge graph from the Context information below:
+
+## Context
+
+{context}
+
+## Facts
+Write a flat numbered list of the top four memorable relational facts from the context information:
+{knowledge_graph(120, 0.0)}

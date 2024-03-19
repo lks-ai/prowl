@@ -1,0 +1,11 @@
+# Summarization
+Write the Cliff's Notes for the following:
+
+
+{text}
+
+
+## Cliff's Notes Summary:
+Write the brief and concise summary about the above. Structure your summary correctly with markdown headers, lists and tables:
+{summary(712, 0.0)}
+

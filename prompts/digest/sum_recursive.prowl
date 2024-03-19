@@ -1,0 +1,20 @@
+# Aggregate Summarization
+Write the Cliff's Notes for the following:
+
+## Current Summary
+This is the current summary:
+```
+{summary}
+```
+
+## New Information
+```
+{text}
+```
+
+## Refactor the Summary:
+Using the current summary and the new information, write a brief and concise refactored summary that integrates both and reduces the overall summary length and avoids repetition. Structure your summary correctly with markdown headers, lists and tables:
+```
+{summary(748, 0.0)}
+
+```

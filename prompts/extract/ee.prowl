@@ -1,0 +1,11 @@
+# Entity Extraction
+Read the following story snippet and create a list of characters, locations and items mentioned. Use full or long-form names if necessary to distinguish between entities.
+
+## Story:
+
+{story}
+
+## List of Characters, Locations and Items
+Write a bullet list with up to five entities. Entity types can be character, location or item. Be sure to list what type each entity is adhering to the syntax `- Name Of Entity (type): Description`. Here's an example "- Frodo (character): The hero who is responsible to deliver the one ring":
+{entity_list(256, 0.0)}
+

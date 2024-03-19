@@ -1,0 +1,25 @@
+# TTRPG Book Page Layout Design
+Write up an HTML/CSS layout for a page of a TTRPG book for the user based on their request. Keep in mind, the HTML/CSS will be converted into a PDF.
+
+## Critical Thinking
+Write a numbered list of up to five critical questions about the user's request and how to layout their page and style fonts and images:
+{critical_questions(100, 0.05)}
+
+## Critical Answers
+Write a numbered list to answer the questions above:
+{critical_answers(220, 0.0)}
+
+## Coding the Layout
+
+### Setup
+Choose your layout properties based on the user request.
+- Short Creative Style Description: {layout_style(20, 0.0)}
+- Font for Headers: {font_header(8, 0.0)}
+- Font for Paragraphs: {font_paragrapn(8, 0.0)}
+
+### Write the HTML
+Given the considerations above and the user's request, code an HTML body which meets the requirements. Any CSS should be embedded into the HTML. Anywhere content should be put use the syntax with two square brackets and variable in snake case like this [[content_name]]:
+```html
+{html_layout(2048, 0.0)}
+
+```

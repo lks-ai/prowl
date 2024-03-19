@@ -1,0 +1,15 @@
+# Create a Chat Session
+Lets configure a session for the user to chat with some AI agents.
+
+## Session Type
+Here is a list of the current session types available to create:
+1. one-on-one: The most basic session. The user chats with an AI agent
+2. group: A group of agents and users chatting together
+3. scenario: Any number of agents and users in a scene at a location
+4. adventure: 
+
+
+
+## Name the Session
+Write a brief and concise title for a chat session about the above:
+- Session Name: {session_name(20, 0.4)}

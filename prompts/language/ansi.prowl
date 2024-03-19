@@ -1,0 +1,5 @@
+# ISO 639-1 Language Codes
+Given the country of a person, figure out what language they most likely speak, and then give the ISO639-1 code for that language.
+- Person Country: {country}
+- Language most likely spoken: {language(6, 0.0)}
+- ISO639-1 Code: {language_iso(2, 0.0)}

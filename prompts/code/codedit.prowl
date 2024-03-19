@@ -1,0 +1,21 @@
+# Code Refinement
+
+## Step 1: Production Readiness
+Take the following code and critically analyze what it needs to be production ready. Assume that any referenced variables and libraries are available and this code is functional:
+```{language}
+{code}
+```
+### Getting it production ready
+Write a numbered list of up to three considerations that could make the code above production ready:
+{missing(500, 0.1)}
+
+### Efficiency
+Write a shorter numbered list of the code changes necessary to perform the above considerations. Keep in mind that some of the changes might affect the functionality of others:
+{efficient_updates(300, 0.2)}
+
+### Rewrite the code:
+rewrite the code using the analysis from above, be sure to try to keep code clean and succinct
+```{language}
+{production_rewrite(6096, 0.0)}
+
+```

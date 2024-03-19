@@ -1,0 +1,20 @@
+# Code Completion
+Write a numbered list of all of the TODO comments in the following code
+```{language}
+{@file(filename)}
+```
+
+## Unfinished code TODO list
+Write a numbered list of up to five TODOs mentioned in the code. If there are no TODOs, just write (Nothing to do). Be sure to only include those comments marked with TODO:
+{todo(512, 0.05)}
+
+## Think critically
+Write down which of the items from the list above are feasible to complete. Only complete TODOs that don't have missing variable or library references:
+{possible_completions(512, 0.05)}
+
+## Code Rewrite
+Rewrite the code and complete the TODO sections:
+```{language}
+{rewrite(2048, 0.0)}
+
+```

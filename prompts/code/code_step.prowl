@@ -1,0 +1,9 @@
+# Step {_list_step}
+{program_overview}
+
+## Write the code
+From here on, just write the code given the step instruction above and the previous considerations:
+```python
+{program_code(600, 0.4)}
+
+```

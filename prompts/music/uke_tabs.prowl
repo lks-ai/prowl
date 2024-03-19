@@ -1,0 +1,4 @@
+# Write Ukelele Tablature
+Write the Uke tabs for the above song:
+
+{ukelele_tablature(800, 0.1)}

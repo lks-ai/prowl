@@ -1,0 +1,4 @@
+# Language
+Write the language and dialect of the user request and make sure all of your replies are in the same language:
+- Language: {user_languge(14, 0.0)}
+- Dialect: {user_dialect()}

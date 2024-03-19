@@ -1,0 +1,27 @@
+# Timezone Difference
+There are two people in different countries. Let's calculate their time difference.
+
+## Person 1
+- Country: {country_person_1(12, 0.5)}
+- IANA Timezone of {country_person_1}: {timezone_person_1(14, 0.1)}
+
+## Person 2
+- Country: {country_person_2(12, 0.5)}
+- IANA Timezone of {country_person_2}: {timezone_person_2(14, 0.1)}
+
+## Time Difference
+Calculate the time difference betwee {country_person_1} and {country_person_2} in hours:
+- Time Diffrence: {diff_person_1(2, 0.0)}
+
+The current time for Person 1 is {@time(timezone_person_1)}.
+- Time for Person 2: {time_person_2(24, 0.0)}
+
+## Locale
+Now let's see how each person represents their respective time in their country. Write each person's local time and date how they would write it:
+- Person 1: {locale_time_person_1(30, 0.2)}
+- Person 2: {locale_time_person_2(30, 0.2)}
+
+## Locale in local language
+Now let's see how each person would write their time and date in their own language:
+- Person 1: {ll_time_person_1(30, 0.1)}
+- Person 2: {ll_time_person_2(30, 0.1)}

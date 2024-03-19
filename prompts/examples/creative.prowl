@@ -1,0 +1,22 @@
+# Creative Writing
+
+## Storytelling
+Write a short and creative story with a {mood} mood that satisfies the user's request:
+- Story Name: {story_name(24, 0.7)}
+- Story Type: {story_type(12, 0.4)}
+- Story Archectype: {story_archetype(12, 0.2)}
+
+## Write the story
+{story(1024, 0.8)}
+
+## Critical Questions
+Write a numbered list of up to four questions that critically compare the mood and the user request with the rewritten story and ask what details are missing and what doesn't sound convincing:
+{critical_questions(300, 0.1)}
+
+## Critical Answers
+Answer the above questions, adhering to the {mood} mood. Be concise but provide complete answers:
+{critical_answers(512, 0.35)}
+
+## Rewrite
+Now rewrite the story given everything considered making sure it sticks to the {mood} mood:
+{rewrite(1800, 0.3)}

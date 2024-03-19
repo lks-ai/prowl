@@ -1,0 +1,15 @@
+# State Extraction
+Using the following story snippet and list of entities in the story, create a list of relationships between the entities which defines their most recent state. List entries should be in the format: - entity_subject_name <relationship> entity_object_name
+
+## Entities
+
+{character_list}
+
+## Story
+
+{story}
+
+## Updated Entity States
+Write a flat bullet list of the states/relationships of the entities as expressed in the story:
+{relationships(400, 0.1)}
+

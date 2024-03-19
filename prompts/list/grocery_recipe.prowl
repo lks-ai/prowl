@@ -1,0 +1,27 @@
+# Grocery List:
+Write a Grocery List as a numbered list with up to ten items, only include the names of the items:
+{groceries(120, 0.4)}
+
+## Make a Recipe
+
+### Choose the Ingredients
+Choose your ingredients from your grocery list:
+- Ingredient 1: {@list(groceries)}
+- Ingredient 2: {ingredient_2(12, 0.1)}
+- Ingredient 3: {ingredient_3(12, 0.0)}
+
+### Choose a Theme
+Write a short phrase representing a creative theme title for your recipe. Be creative and don't include the ingredients in your theme title:
+- Theme: {recipe_theme(14, 0.9)}
+
+### Write the Recipe
+Write numbered list with steps on how to cook a delicious meal which features the three ingredients above:
+{recipe_steps(512, 0.3)}
+
+### Name your Creation
+Come up with a short and sweet name for the above recipe:
+- Name: {recipe_name(12, 0.3)}
+
+### Ingredients you Didn't Buy
+Write a bullet list of any ingredients mentioned in the recipe which were not in the grocery list:
+{missing_ingredients(120, 0.0)}

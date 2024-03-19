@@ -1,0 +1,34 @@
+# Make an Image
+The goal of this task is to make an image by first choosing a subject and then generating a prompt for it which we will use the comfy tool to generate an image from.
+
+## Subject
+Describe a subject for the image. Choose anything people would take photos of, surprise me:
+{subject(200, 0.6)}
+
+## Mood
+Choose a single word mood for this subject, for example "creative" or "melancholy":
+- Mood Word: {mood(8, 0.25)}
+
+## Subject Physical Aspects
+Write a brief paragraph which describes more about the physical aspects of the Subject. Be sure to talk about details missing from your previous description which logically make sense:
+{scend_subject_aspects(320, 0.1)}
+
+## Scene
+Write a brief paragraph describing a scene for this subject which reflects the {mood} mood:
+{scene_description(300, 0.2)} 
+
+## Scene Physical Aspects
+Describe the physical aspects of the scene in a couple of sentences:
+{scene_aspects(300, 0.05)}
+
+## Scene Lighting
+Write a short phrase which describes the lighting and the shadows of the scene:
+{scene_lighting(200, 0.1)}
+
+## Medium
+Choose the artistic medium that this image is represented in, for example "pencil drawing" or "photo", or say DEFAULT to let the image generator model choose:
+- Image Medium: {scene_medium(10, 0.1)} 
+
+## Prompt Composition
+Write a comma delimited set of key phrases on a single line which describes all of the above. be sure to only use commas to separate phrases:
+{scene_prompt(520, 0.0)}

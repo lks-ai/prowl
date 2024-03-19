@@ -1,0 +1,55 @@
+# Create a D&D Monster
+Use the information provided to create a 5e D&D Monster
+
+## Provided Information
+- Name: {monster_name}
+- Strengths: {monster_strengths}
+- CR: {monster_cr}
+
+### Special Instructions
+These are extra instructions to consider when generating the monster:
+{monster_instructions}
+
+## Monster Type
+Enter a D&D Monster type:
+- Type: {monster_type(24, 0.2)}
+## Monster Hit Points
+Roll and calculate hit points
+- HP: {monster_hp(6, 0.6)}
+- Roll Info: {monster_hp_roll(8, 0.2)}
+## Monster Armor Class
+- AC: {monster_ac(6, 0.6)}
+## Monster Speed
+- Speed: {monster_speed(6, 0.2)}
+
+## Monster Abilities
+Roll for Str, Dex, Con, Int, Wis and Cha:
+- Strength: {monster_str(5, 0.1)}
+- Dexterity: {monster_dex(5, 0.1)}
+- Constitution: {monster_con(5, 0.1)}
+- Intelligence: {monster_int(5, 0.1)}
+- Wisdom: {monster_wis(5, 0.1)}
+- Charisma: {monster_cha(5, 0.1)}
+
+### Saving Throws
+Write the three saving throws abilities and values for {monster_name} on one line separated by commas:
+- Saving Throws: {monster_saving_throws(20, 0.1)}
+
+## Taking Damage
+- Vulnerabilities: {monster_vuln(10, 0.2)}
+- Resistances: {monster_resistance(10, 0.2)}
+- Damage Immunities: {monster_immune(10, 0.2)}
+- Condition Immunities: {monster_cond_immune(10, 0.2)}
+
+## Monster Traits
+Write a bullet list of up to two traits the monster has including the name and a description:
+{monster_traits(240, 0.5)}
+
+## Monster Actions
+Write a bullet list of three specific attacks or maneuvers the creature can perform during it's turn in combat:
+{monster_actions(320, 0.6)}
+
+## Monster Senses
+If there are any senses that are applicable for {monster_name} write them in a short bullet list:
+{monster_senses(60, 0.2)}
+
