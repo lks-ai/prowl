@@ -8,7 +8,7 @@ class VLLM:
     def __init__(self, base_url, model="mistralai/Mistral-7B-Instruct-v0.2"):
         self.url=base_url
         self.headers = {"Content-Type": "application/json"}
-        self.data= {"model": model, "max_tokens": 500, "temperature": 0.9}
+        self.data= {"model": model, "max_tokens": 500, "temperature": 0.0}
         self.usage = {}
 
     class Usage:
@@ -58,15 +58,17 @@ class VLLM:
         data = self.data.copy()
         data.update({"prompt": prompt})
         data.update(kwargs)
+        del data['_event']
         if streaming:
             data['stream'] = True
         st = time.time()
-        print(streaming, stream_callback)
+        # print(streaming, stream_callback)
+        #print(data)
 
         async with aiohttp.ClientSession() as session:
             async with session.post(self.url, headers=self.headers, data=json.dumps(data)) as response:
                 if streaming and stream_callback:
-                    print('STREAMING')
+                    #print('STREAMING')
                     async for line in response.content:
                         try:
                             # Check for SSE pattern and strip the "data: " part if present
@@ -101,8 +103,6 @@ if __name__ == "__main__":
     )
 
     async def sample_callback(data):
-        print(data['choices'][0]['text'], end="", flush=True)  # Or handle the streaming data in any other way
-        #print(data)
+        print(data['choices'][0]['text'], end="", flush=True)
 
     r = asyncio.run(llm.run_async("Monty Python Sketch:\n\nPriest: What do we do with witches?\nAngry Crowd:", streaming=True, stream_callback=sample_callback))
-    #print(r)

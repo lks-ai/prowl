@@ -367,7 +367,7 @@ class prowl:
                         temperature = float_arg + fex,
                         stop = stops,
                         stream = stream_level == prowl.StreamLevel.TOKEN,
-                        token_event = token_event,
+                        stream_callback = token_event,
                     )
                     usage.add(r['usage'])
                     # get the final completion and perform cleanup from 0th choice
