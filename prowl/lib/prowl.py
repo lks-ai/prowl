@@ -366,7 +366,7 @@ class prowl:
                         max_tokens = int_arg,
                         temperature = float_arg + fex,
                         stop = stops,
-                        stream = stream_level == prowl.StreamLevel.TOKEN,
+                        streaming = stream_level == prowl.StreamLevel.TOKEN,
                         stream_callback = token_event,
                     )
                     usage.add(r['usage'])
@@ -409,4 +409,3 @@ class prowl:
         prompt, variables = await prowl.run_callbacks(prompt, callbacks, variables, stream_level=stream_level, variable_event=variable_event, script_name=script_name)
         
         return prowl.Return(prompt, variables, usage)
-

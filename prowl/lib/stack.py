@@ -428,3 +428,5 @@ class ProwlStack:
             script_name=script_name,
             silent=self.silent,
         )
+        
+StreamLevel = prowl.StreamLevel

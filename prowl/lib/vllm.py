@@ -58,17 +58,19 @@ class VLLM:
         data = self.data.copy()
         data.update({"prompt": prompt})
         data.update(kwargs)
-        del data['_event']
+        n = 1 if 'n' not in kwargs else kwargs['n']
+        #del data['token_event']
         if streaming:
             data['stream'] = True
         st = time.time()
         # print(streaming, stream_callback)
-        #print(data)
+        # print(data)
 
         async with aiohttp.ClientSession() as session:
             async with session.post(self.url, headers=self.headers, data=json.dumps(data)) as response:
                 if streaming and stream_callback:
                     #print('STREAMING')
+                    tokens, choices, finish_reason = 0, [{}] * n, None
                     async for line in response.content:
                         try:
                             # Check for SSE pattern and strip the "data: " part if present
@@ -76,15 +78,25 @@ class VLLM:
                             if decoded_line.startswith('data:'):
                                 decoded_line = decoded_line[5:].strip()
                             if decoded_line:  # Ensure line is not empty
-                                r = json.loads(decoded_line)
+                                r:dict = json.loads(decoded_line)
                                 # elapsed = {'elapsed': time.time() - st}
                                 # r['usage'] = r.get('usage', {})  # Ensure 'usage' key exists
                                 # r['usage'].update(elapsed)
-                                await stream_callback(r)
+                                tokens += 1
+                                #print(r)
+                                for i, v in enumerate(r['choices']):
+                                    if len(choices[i]) == 0:
+                                        choices[i] = {'index': i, 'text': '', 'logprobs': None, 'finish_reason': None}
+                                    choices[i]['text'] += v['text']
+                                    choices[i]['finish_reason'] = v['finish_reason']
+                                await stream_callback(r['choices'][0]['text']) # can change to send back ALL choices
                         except json.JSONDecodeError:
                             # Handle lines that are not valid JSON, such as heartbeats or empty lines
                             pass
-                    return None  # Return None or appropriate response to indicate streaming completion
+                    el = time.time() - st
+                    u = VLLM.Usage()
+                    u.add({'prompt_tokens': 0, 'completion_tokens': tokens, 'total_tokens': tokens, 'elapsed': el})
+                    return {'choices': choices, 'usage': u.dict()}  # Return None or appropriate response to indicate streaming completion
                 else:
                     resp_text = await response.text()
                     r = json.loads(resp_text)
