@@ -11,7 +11,7 @@ Choose a single word mood for this subject, for example "creative" or "melanchol
 
 ## Subject Physical Aspects
 Write a brief paragraph which describes more about the physical aspects of the Subject. Be sure to talk about details missing from your previous description which logically make sense:
-{scend_subject_aspects(320, 0.1)}
+{scene_subject_aspects(320, 0.1)}
 
 ## Scene
 Write a brief paragraph describing a scene for this subject which reflects the {mood} mood:

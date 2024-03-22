@@ -1,4 +1,4 @@
-from lib.tool import ProwlTool
+from prowl.lib.tool import ProwlTool
 import os, random
 
 class ListTool(ProwlTool):

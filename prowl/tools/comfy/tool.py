@@ -1,9 +1,9 @@
-from lib.tool import ProwlTool
+from prowl.lib.tool import ProwlTool
 import time
 from string import Template
 import random, sys, json, traceback
 
-from .comfyutil import ComfyAsync
+from prowl.tools.comfy.comfyutil import ComfyAsync
 
 import base64
 from PIL import Image
@@ -13,7 +13,7 @@ import os
 PROWL_COMFY_ENDPOINT = os.getenv("PROWL_COMFY_ENDPOINT")
 
 class ComfyTool(ProwlTool):
-    def __init__(self, forgive_errors=False, output_path='tools/comfy/output/', workflow_path='tools/comfy/workflows/', save=True):
+    def __init__(self, forgive_errors=False, output_path='prowl/tools/comfy/output/', workflow_path='prowl/tools/comfy/workflows/', save=True):
         super().__init__(
             argmap=[
                 {'arg': 0, 'label': 'prompt'},
@@ -32,7 +32,6 @@ class ComfyTool(ProwlTool):
         self.save = save
         
     async def run(self, prompt, workflow="sdxl", seed=0, prefix="prowl", width=1024, height=1024, **kwargs):
-        # https://image.ilidorn.com/prompt for sending workflow
         # how to get an image back
         with open(f"{self.comfy_workflow_path}{workflow}.jsont", 'r') as f:
             template = f.read()
@@ -52,7 +51,7 @@ class ComfyTool(ProwlTool):
         st = time.time()
         try:
             print(PROWL_COMFY_ENDPOINT, flush=True)
-            comfy = ComfyAsync(host=PROWL_COMFY_ENDPOINT)# (host="image.ilidorn.com")
+            comfy = ComfyAsync(host=PROWL_COMFY_ENDPOINT)
             images = await comfy.generate(jp) # returns list of binary image strings
             data = {'images': []}
             print(images.keys())

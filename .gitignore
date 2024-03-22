@@ -1,5 +1,5 @@
 _pycache_
-*/*/_pycache_
+*/_pycache_*
 dist
 build
 prompt_owl.egg-info

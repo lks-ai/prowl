@@ -1,4 +1,4 @@
-from lib.tool import ProwlTool
+from prowl.lib.tool import ProwlTool
 from datetime import datetime, datetime, timedelta
 import pytz
 
