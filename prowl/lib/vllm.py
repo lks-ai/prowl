@@ -99,9 +99,10 @@ class VLLM:
                     return {'choices': choices, 'usage': u.dict()}  # Return None or appropriate response to indicate streaming completion
                 else:
                     resp_text = await response.text()
-                    r = json.loads(resp_text)
+                    r:dict = json.loads(resp_text)
                     elapsed = {'elapsed': time.time() - st}
-                    r['usage'].update(elapsed)
+                    print(f"vLLM Response: {r}")
+                    r.get('usage', {}).update(elapsed)
                     return r
 
 

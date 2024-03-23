@@ -1,7 +1,7 @@
 import asyncio
-from lib.stack import ProwlStack
+from prowl import ProwlStack
 
-stack = ProwlStack(folder=['prompts/digest/', 'prompts/thought/'])
+stack = ProwlStack(folder=['prowl/prompts/digest/', 'prowl/prompts/thought/', 'prowl/prompts/'])
 
 async def aggsum(question, summary):
     q_orig = question
@@ -45,15 +45,10 @@ async def main():
     
     all_fp = "examples/output/summaries/all.md"
     
-    question = 'Create a plan to programatically protect an end user by categorizing all types of government, globalist and mainstream media propaganda. It should see every piece of data as a potential result of some larger agenda until proven otherwise. The user should control what is deemed misinformation. It should be open source, use local models and not leak any data back to the internet. I will start out using Large Language Models to train a categorizer but I do not know the categories or some good set of parameters to judge incoming data by. The user should be considered an adult, with no protection needed by a higher authority like a government or globalist organization. This is a psychological shield against the massive psychological warfare which is rampant in 2024.'
+    question = 'How does a tree grow?'
     summary = '[No current summary]'
     for i in range(1, 30):
         _summary, _title, crit = await aggsum(question, summary)
-        title = slugify(_title)
-        fp = f"examples/output/summaries/{title}.md"
-        with open(fp, 'w+') as f:
-            f.write(crit + _summary)
-        with open(all_fp, 'a') as f:
-            f.write(f"{_summary}\n\n\n")
+        # TODO Save all this shit
 
 asyncio.run(main())

@@ -31,4 +31,4 @@ Choose the artistic medium that this image is represented in, for example "penci
 
 ## Prompt Composition
 Write a comma delimited set of key phrases on a single line which describes all of the above. be sure to only use commas to separate phrases:
-{scene_prompt(520, 0.0)}
+{scene_prompt(520, 0.1)}

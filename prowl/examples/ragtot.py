@@ -1,7 +1,7 @@
-from lib.stack import ProwlStack
-from tools.collect.tool import CollectTool
-from tools.recall.tool import RecallTool
-from tools.each.tool import EachTool
+from prowl import ProwlStack
+from prowl.tools.collect.tool import CollectTool
+from prowl.tools.recall.tool import RecallTool
+from prowl.tools.each.tool import EachTool
 
 import chromadb
 from chromadb import QueryResult
@@ -16,7 +16,7 @@ import asyncio
 
 # Start
 
-stack = ProwlStack('prompts/thought/')
+stack = ProwlStack(folder=['prowl/prompts/thought/', 'prowl/prompts/'])
 
 chroma = chromadb.Client()
 collection = chroma.create_collection(name="stories")
@@ -60,7 +60,7 @@ async def recall(query, limit=3, **kwargs):
 ## Generate some stories to collect
 
 async def main():
-    stack = ProwlStack(folder=["prompts/rag/", "prompts/thought/"])
+    stack = ProwlStack(folder=["prowl/prompts/rag/", "prowl/prompts/thought/", "prowl/prompts/"])
     stack.add_tool(EachTool(stack))
     stack.add_tool(RecallTool(stack, recall_callback=recall))
     stack.add_tool(CollectTool(stack, collect_callback=collect))
