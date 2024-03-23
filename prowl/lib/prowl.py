@@ -369,6 +369,10 @@ class prowl:
                         streaming = stream_level == prowl.StreamLevel.TOKEN,
                         stream_callback = token_event,
                     )
+                    if r.get('object', '') == 'error':
+                        if not silent:
+                            print(f"VLLM ERROR: {r}")
+                        raise ValueError(f"{r['message']}")
                     usage.add(r['usage'])
                     # get the final completion and perform cleanup from 0th choice
                     completion = await prowl.align_conditioning(prompt, (var_name, int_arg, float_arg), r['choices'][0], usage, llm, multiline, continue_ratio=continue_ratio, stops=stops, token_event=token_event)
