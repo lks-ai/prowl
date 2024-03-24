@@ -1,13 +1,13 @@
 ## Answer from Memory
-This context section should hold information relevant to the question.
-
-### Self-Question
-{crit_questions}
+Answer the Self-Question below from the context provided
 
 ### Context
 ```
 {@recall(crit_questions)}
 ```
+
+### Self-Question
+{crit_questions}
 
 ### Answer
 Answer your critical question using only the information from the context section above:

@@ -101,7 +101,7 @@ class VLLM:
                     resp_text = await response.text()
                     r:dict = json.loads(resp_text)
                     elapsed = {'elapsed': time.time() - st}
-                    print(f"vLLM Response: {r}")
+                    #print(f"vLLM Response: {r}")
                     r.get('usage', {}).update(elapsed)
                     return r
 

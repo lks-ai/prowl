@@ -1,9 +1,22 @@
 # PrOwl v 0.1
 *Give your Prompts Wings!*
 
+## What is PrOwl?
+
+PrOwl (Prompt Owl) or prowl is a simple declarative language that uses in-line variable declaration and referencing to continuously fill out a multi-step prompt that conditions the LLM into creating high quality output. It does so by using a fill-in-the-blank style syntax that is simple yet very robust. 
+
+This repository holds the PrOwl interpreter for use with python scripting
+
+## Installation
+```sh
+pip install prompt-owl
+```
+If you have installed via `pip` and want easy access to the pre-built `.prowl` scripts in the `/prompts/` folder, I recommend you clone our [prompt-library](https://github.com/lks-ai/prompt-library).
+
+
 ## Backstory
 
-I got sick of using langchain for prompt composition.  I got sick of thinking of prompts as linear unidirectional processes that were broken up into strings.  I wanted prompts to be more like HTML 1.0 and after 7 months of using Langchain, I got more prompt completion tasks done using the first mockup version of prowl on day one than I had in the whole 7 months using langchain as part of my production system. Needless to say I've now switched completely to this because it lets me really feel like I'm doing the task of `prompt engineering` instead of python coding where prompts are a second-class citizen. So this is a prompting-first language with an interpreter and a processing stack that lets you stack up `prowl` tasks on top of each other.
+I got sick of using langchain for prompt composition.  I got sick of thinking of prompts as linear unidirectional processes that were broken up into strings.  I wanted prompts to be more like HTML 1.0 and after 7 months of using Langchain, I got more prompt completion tasks done using the first mockup version of PrOwl on day one than I had in the whole 7 months using langchain as part of my production system. Needless to say I've now switched completely to this because it lets me really feel like I'm doing the task of `prompt engineering` instead of python coding where prompts are a second-class citizen. So this is a prompting-first language with an interpreter, a CLI tool and a processing stack that lets you stack up `.prowl` scripts on top of each other.
 
 ## Benefits of using the PrOwl Language
 
@@ -24,9 +37,6 @@ I got sick of using langchain for prompt composition.  I got sick of thinking of
 
 4. **Augmented Prompt Engineering**: With `.prowl`, users can apply advanced prompt engineering techniques, writing their prompt *alongside* the LLM. This enables more dynamic, structured, and creative generation results for LLMs which still adhere and align with human standards.
 
-# PrOwl Prompt Writing
-
-PrOwl (Prompt Owl) or prowl is a simple declarative language that uses in-line variable declaration and referencing to continuously fill out a multi-step prompt that conditions the LLM into creating high quality output. It does so by using a fill-in-the-blank style syntax that is simple yet very robust.
 
 ## Syntax
 prowl script uses "{}" curly braces to define and reference variables place in-line with a surrounding text. This simple syntax with variable declaration prompts the LLM with all prior text from the script and makes it generate a response, storing the variable value it generated for later use. Variables can be single line or multiline.

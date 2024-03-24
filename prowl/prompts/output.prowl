@@ -1,2 +1,2 @@
 # Fulfill the User Request
-{output_text(2048, 0.2)}
+{output_text(1024, 0.2)}

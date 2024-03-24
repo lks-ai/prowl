@@ -169,8 +169,8 @@ class prowl:
             callback_text = match.group()
             callback_name = match.group(1) #match[0]
             # print('@>>', callback_name)
-            if variables:
-                print(variables.keys())
+            # if variables:
+            #     print(variables.keys())
             #print(callbacks)
             arguments = match.group(2).split(',') #match[1].split(',')
             head = match.start()
