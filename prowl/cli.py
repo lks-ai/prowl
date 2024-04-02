@@ -1,16 +1,16 @@
 import sys, os, asyncio, re
-from lib.prowl import prowl
-from lib.stack import ProwlStack
-from tools.out.tool import OutputTemplateTool
-from tools.file.tool import FileTool
-from tools.time.tool import TimeTool
-from tools.include.tool import IncludeTool
-from tools.list.tool import ListTool
-from tools.script.tool import ScriptTool
-from tools.comfy.tool import ComfyTool
-from tools.each.tool import EachTool
+from prowl.lib.prowl import prowl
+from prowl.lib.stack import ProwlStack
+from prowl.tools.out.tool import OutputTemplateTool
+from prowl.tools.file.tool import FileTool
+from prowl.tools.time.tool import TimeTool
+from prowl.tools.include.tool import IncludeTool
+from prowl.tools.list.tool import ListTool
+from prowl.tools.script.tool import ScriptTool
+from prowl.tools.comfy.tool import ComfyTool
+from prowl.tools.each.tool import EachTool
 
-version = "0.1 beta"
+version = "0.1.12"
 
 def parse_scripts(scripts:list[str]):
     sc, flags = [], {}
