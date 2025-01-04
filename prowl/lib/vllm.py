@@ -6,7 +6,7 @@ import aiohttp
 
 class VLLM:
     def __init__(self, base_url, model="mistralai/Mistral-7B-Instruct-v0.2"):
-        self.url=base_url
+        self.url=f"{base_url}/v1/completions"
         self.headers = {"Content-Type": "application/json"}
         self.data= {"model": model, "max_tokens": 500, "temperature": 0.0}
         self.usage = {}
@@ -54,7 +54,7 @@ class VLLM:
         self.usage['elapsed'] = en - st
         return r
 
-    async def run_async(self, prompt, streaming=False, stream_callback=None, **kwargs):
+    async def run_async(self, prompt, streaming=False, stream_callback=None, variable_name=None, **kwargs):
         data = self.data.copy()
         data.update({"prompt": prompt})
         data.update(kwargs)
@@ -89,7 +89,7 @@ class VLLM:
                                         choices[i] = {'index': i, 'text': '', 'logprobs': None, 'finish_reason': None}
                                     choices[i]['text'] += v['text']
                                     choices[i]['finish_reason'] = v['finish_reason']
-                                await stream_callback(r['choices'][0]['text']) # can change to send back ALL choices
+                                await stream_callback(r['choices'][0]['text'], finish_reason=choices[0]['finish_reason'], variable_name=variable_name) # can change to send back ALL choices
                         except json.JSONDecodeError:
                             # Handle lines that are not valid JSON, such as heartbeats or empty lines
                             pass

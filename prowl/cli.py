@@ -10,7 +10,7 @@ from prowl.tools.script.tool import ScriptTool
 from prowl.tools.comfy.tool import ComfyTool
 from prowl.tools.each.tool import EachTool
 
-version = "0.1.12"
+version = "0.1.14"
 
 def parse_scripts(scripts:list[str]):
     sc, flags = [], {}
@@ -107,7 +107,7 @@ if len(sys.argv) > 1:
         print(out['output'])
         
 else:
-    from tools.prowl.tool import ProwlProwlTool
+    from prowl.tools.prowl.tool import ProwlProwlTool
     # Prowl Augmented Prompt Engineering
     title = f"PrOwl: Augmented Prompt Composer version {version}"
     border = "-" * len(title)

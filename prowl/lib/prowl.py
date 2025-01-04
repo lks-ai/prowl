@@ -1,13 +1,11 @@
 # PrOwl: Prompt Owl - Give your prompts wings!
 # Version 0.1 Origin: 2024-01-04
-# Creator: Nathaniel Gibson (github.com/newsbubbles)
+# Creator: Nathaniel Gibson @ LK Studio (github.com/lks-ai)
 # Write prompt chains all in one file using this simple declarative language
 # Augmented conditional prompt completion. Prompting *is* programming.
 # Special thanks to @hattendo for his insights and helping me keep it minimal.
 
-# Current issue... needs to ignore ```prowl code blocks so that example prowl code can be given
-
-import re, os
+import re, os, asyncio
 from enum import Enum
 from typing import Any
 from .vllm import VLLM
@@ -165,6 +163,7 @@ class prowl:
         parsed_calls = []
         final_text = ""
         head, tail = 0, 0
+        stop = False
         for match in matches:
             callback_text = match.group()
             callback_name = match.group(1) #match[0]
@@ -200,10 +199,12 @@ class prowl:
             final_text += result.completion or ""
             variable:prowl.Variable = prowl.push_var(variables, callback_name, {'value': result.completion, 'data': result.data})
             if variable_event and stream_level.value == prowl.StreamLevel.VARIABLE.value:
-                await variable_event(script_name, variable)
+                er = await variable_event(script_name, variable)
+                if er is not None and er == False: # allow stopping on the variable event if it returns False
+                    stop = True
             tail = match.end()
         final_text += text[tail:]
-        return final_text, variables
+        return final_text, variables, stop
     
     @staticmethod
     def mask_prowl_code_blocks(text):
@@ -233,7 +234,7 @@ class prowl:
         return value
     
     @staticmethod
-    async def auto_continue(llm:VLLM, prompt:str, completion:str, var_attr:tuple, finish_reason:str, continue_ratio:float=0.5, stops=["\n\n"], multiline=True):
+    async def auto_continue(llm:VLLM, prompt:str, completion:str, var_attr:tuple, finish_reason:str, continue_ratio:float=0.5, stops=["\n\n"], multiline=True, stream_level=StreamLevel.NONE, token_event=None):
         # Automatic continuation on max_token length stop
         variable_name, int_arg, float_arg = var_attr
         usage = VLLM.Usage()
@@ -243,7 +244,15 @@ class prowl:
             # further generate with prompt + generated_value
             final_value = completion
             # print(f'...>> CONTINUING for {extra_tokens} tokens...')
-            r = await llm.run_async(prompt + completion, max_tokens=extra_tokens, temperature=float_arg, stops=stops)
+            r = await llm.run_async(
+                prompt + completion, 
+                max_tokens=extra_tokens, 
+                temperature=float_arg, 
+                stops=stops,
+                streaming = stream_level == prowl.StreamLevel.TOKEN,
+                stream_callback = token_event,
+                variable_name=variable_name,
+            )
             completion = final_value + r['choices'][0]['text']
             if not multiline:
                 completion = prowl.strip_stops(completion, stops)
@@ -263,6 +272,7 @@ class prowl:
             continue_ratio=0.0, 
             stops=["\n\n"],
             retry_on_endswith=":",
+            stream_level=StreamLevel.NONE,
             token_event=None,
         ):
         """Check the resulting correct and complete value"""
@@ -273,7 +283,7 @@ class prowl:
         
         async def ac(stop=None):
             # Helper function for automatic continuation on max_token length stop
-            completion, use = await prowl.auto_continue(llm, prompt, result_choice["text"].strip(), variable_attributes, finish_reason, continue_ratio, stops=stop or stops, multiline=multiline)
+            completion, use = await prowl.auto_continue(llm, prompt, result_choice["text"].strip(), variable_attributes, finish_reason, continue_ratio, stops=stop or stops, multiline=multiline, stream_level=stream_level, token_event=token_event)
             usage.add(use)
             return completion
         
@@ -325,18 +335,19 @@ class prowl:
         prompt = ""
         last_index = 0
         llm = VLLM(
-            f"{PROWL_VLLM_ENDPOINT}/v1/completions",
+            f"{PROWL_VLLM_ENDPOINT}",
             model=PROWL_MODEL,
         )
         # accumulate token usage here
         usage = VLLM.Usage()
         # Iterate through variable declarations and references aggregating through the prompt
+        stop = False
         for match in matches:
             # check for stop first
             if stop_event:
                 stop = await stop_event()
-                if stop:
-                    return prowl.Return(prompt, variables, usage)
+            if stop:
+                return prowl.Return(prompt, variables, usage)
             var_name = match.group(1)
             start_index = match.start()
             text_segment = template[last_index:start_index]
@@ -350,7 +361,7 @@ class prowl:
             if match.group(2) is not None:
                 # Okay, first do a back-check to see if there are tool calls present somewhere before this variable
                 if callbacks:
-                    prompt, variables = await prowl.run_callbacks(prompt, callbacks, variables, stream_level=stream_level, variable_event=variable_event, script_name=script_name)
+                    prompt, variables, stop = await prowl.run_callbacks(prompt, callbacks, variables, stream_level=stream_level, variable_event=variable_event, script_name=script_name)
                 # It's a declaration, ask the LLM for a value
                 int_arg, float_arg = int(match.group(2)), float(match.group(3))
                 # Loop the call until a valid generated value is present for that variable
@@ -361,21 +372,24 @@ class prowl:
                 fad = 1.0 - float_arg
                 while completion == "":
                     fex = fad * (tries / max_retries)
-                    r = await llm.run_async(
-                        prompt.rstrip(" "),
-                        max_tokens = int_arg,
-                        temperature = float_arg + fex,
-                        stop = stops,
-                        streaming = stream_level == prowl.StreamLevel.TOKEN,
-                        stream_callback = token_event,
-                    )
-                    if r.get('object', '') == 'error':
-                        if not silent:
-                            print(f"VLLM ERROR: {r}")
-                        raise ValueError(f"{r['message']}")
-                    usage.add(r['usage'])
+                    try:
+                        r = await llm.run_async(
+                            prompt.rstrip(" "),
+                            max_tokens = int_arg,
+                            temperature = float_arg + fex,
+                            stop = stops,
+                            streaming = stream_level == prowl.StreamLevel.TOKEN,
+                            stream_callback = token_event,
+                            variable_name=var_name,
+                        )
+                        usage.add(r['usage'])
+                    except:
+                        print("LLM CONNECTION ERROR")
+                        await asyncio.sleep(4)
+                        tries += 1
+                        continue
                     # get the final completion and perform cleanup from 0th choice
-                    completion = await prowl.align_conditioning(prompt, (var_name, int_arg, float_arg), r['choices'][0], usage, llm, multiline, continue_ratio=continue_ratio, stops=stops, token_event=token_event)
+                    completion = await prowl.align_conditioning(prompt, (var_name, int_arg, float_arg), r['choices'][0], usage, llm, multiline, continue_ratio=continue_ratio, stops=stops, stream_level=stream_level, token_event=token_event)
                     tries += 1
                     if tries >= max_retries:
                         left_context = None if len(prompt) < 30 else prompt[-30:].replace("\n", "\\n")
@@ -400,7 +414,7 @@ class prowl:
                 if var_name in variables:
                     # Replace the reference with the stored value
                     var:prowl.Variable = variables[var_name]
-                    prompt += var.value
+                    prompt += f"{var.value}"
                 else:
                     # Leave the reference as-is for now
                     prompt += f'{{{var_name}}}'
@@ -410,6 +424,7 @@ class prowl:
         # Add remaining text after the last match and check it's tool callbacks one last time
         # -> Tool check is for using tools at the end of a script
         prompt += template[last_index:]
-        prompt, variables = await prowl.run_callbacks(prompt, callbacks, variables, stream_level=stream_level, variable_event=variable_event, script_name=script_name)
+        prompt, variables, stop = await prowl.run_callbacks(prompt, callbacks, variables, stream_level=stream_level, variable_event=variable_event, script_name=script_name)
         
         return prowl.Return(prompt, variables, usage)
+
