@@ -1,6 +1,11 @@
 # PrOwl v 0.1
 *Give your Prompts Wings!*
 
+## Colab Demos
+- [PrOwl Demo](https://colab.research.google.com/drive/1x-9mkpawC3kh_3FKJcl7QE3UkRkvtAXL?usp=sharing)
+- [Scripting with PrOwl](https://colab.research.google.com/drive/1_StW54A8B4mAdRa4piBRxFxnhhyaaYuS#scrollTo=oTqFPlXHjZTN)
+
+
 ## Backstory
 
 I got sick of using langchain for prompt composition.  I got sick of thinking of prompts as linear unidirectional processes that were broken up into strings.  I wanted prompts to be more like HTML 1.0 and after 7 months of using Langchain, I got more prompt completion tasks done using the first mockup version of prowl on day one than I had in the whole 7 months using langchain as part of my production system. Needless to say I've now switched completely to this because it lets me really feel like I'm doing the task of `prompt engineering` instead of python coding where prompts are a second-class citizen. So this is a prompting-first language with an interpreter and a processing stack that lets you stack up `prowl` tasks on top of each other.
@@ -231,7 +236,48 @@ This is what I got out...
 
 #### Variables
 ```json
-{'completion': "...", 'variables': {'user_request': {'value': 'how high is mount everest?', 'history': [], 'usage': {'prompt_tokens': 0, 'total_tokens': 0, 'completion_tokens': 0, 'elapsed': 0}}, 'user_intent': {'value': 'to provide the height of Mount Everest', 'history': [], 'usage': {'prompt_tokens': 59, 'total_tokens': 89, 'completion_tokens': 30, 'elapsed': 4.183416366577148}}, 'output': {'value': 'Mount Everest is the highest mountain in the world, with a height of approximately 8,848.86 meters (29,031.7 feet) above sea level.', 'history': [], 'usage': {'prompt_tokens': 78, 'total_tokens': 120, 'completion_tokens': 42, 'elapsed': 4.09203028678894}}}, 'usage': {'prompt_tokens': 137, 'total_tokens': 209, 'completion_tokens': 72, 'elapsed': 8.275446653366089}, 'output': []}
+{
+    "completion": "...",
+    "variables": {
+        "user_request": {
+            "value": "how high is mount everest?",
+            "history": [],
+            "usage": {
+                "prompt_tokens": 0,
+                "total_tokens": 0,
+                "completion_tokens": 0,
+                "elapsed": 0
+            }
+        },
+        "user_intent": {
+            "value": "to provide the height of Mount Everest",
+            "history": [],
+            "usage": {
+                "prompt_tokens": 59,
+                "total_tokens": 89,
+                "completion_tokens": 30,
+                "elapsed": 4.183416366577148
+            }
+        },
+        "output": {
+            "value": "Mount Everest is the highest mountain in the world, with a height of approximately 8,848.86 meters (29,031.7 feet) above sea level.",
+            "history": [],
+            "usage": {
+                "prompt_tokens": 78,
+                "total_tokens": 120,
+                "completion_tokens": 42,
+                "elapsed": 4.09203028678894
+            }
+        }
+    },
+    "usage": {
+        "prompt_tokens": 137,
+        "total_tokens": 209,
+        "completion_tokens": 72,
+        "elapsed": 8.275446653366089
+    },
+    "output": []
+}
 ```
 
 #### Completion Prompt
@@ -257,7 +303,38 @@ You can see that the user intent really helps steer the fulfillment of the reque
 #### Variables
 
 ```json
-{'completion': '# User Request\nHow high is mount everest?\n\n# Fulfill the User Request\nMount Everest is the highest mountain above sea level, with an elevation of 8,848.86 meters (29,031.7 feet) as of 2020. This measurement was made by a team of Chinese surveyors using satellite data and ground measurements. The previous record, which was 8,848.86 meters (29,031.7 feet), was set in 2005 by a Chinese team. Mount Everest is located in the Mahalangur mountain range in the Himalayas, and straddles the border between Nepal and Tibet. It is a popular destination for mountaineers from around the world, and many people dream of reaching its summit.\n\n', 'variables': {'user_request': {'value': 'How high is mount everest?', 'history': [], 'usage': {'prompt_tokens': 0, 'total_tokens': 0, 'completion_tokens': 0, 'elapsed': 0}}, 'output': {'value': 'Mount Everest is the highest mountain above sea level, with an elevation of 8,848.86 meters (29,031.7 feet) as of 2020. This measurement was made by a team of Chinese surveyors using satellite data and ground measurements. The previous record, which was 8,848.86 meters (29,031.7 feet), was set in 2005 by a Chinese team. Mount Everest is located in the Mahalangur mountain range in the Himalayas, and straddles the border between Nepal and Tibet. It is a popular destination for mountaineers from around the world, and many people dream of reaching its summit.', 'history': [], 'usage': {'prompt_tokens': 22, 'total_tokens': 181, 'completion_tokens': 159, 'elapsed': 12.067103862762451}}}, 'usage': {'prompt_tokens': 22, 'total_tokens': 181, 'completion_tokens': 159, 'elapsed': 12.067103862762451}, 'output': []}
+{
+    "completion": "# User Request\nHow high is mount everest?\n\n# Fulfill the User Request\nMount Everest is the highest mountain above sea level, with an elevation of 8,848.86 meters (29,031.7 feet) as of 2020. This measurement was made by a team of Chinese surveyors using satellite data and ground measurements. The previous record, which was 8,848.86 meters (29,031.7 feet), was set in 2005 by a Chinese team. Mount Everest is located in the Mahalangur mountain range in the Himalayas, and straddles the border between Nepal and Tibet. It is a popular destination for mountaineers from around the world, and many people dream of reaching its summit.\n\n",
+    "variables": {
+        "user_request": {
+            "value": "How high is mount everest?",
+            "history": [],
+            "usage": {
+                "prompt_tokens": 0,
+                "total_tokens": 0,
+                "completion_tokens": 0,
+                "elapsed": 0
+            }
+        },
+        "output": {
+            "value": "Mount Everest is the highest mountain above sea level, with an elevation of 8,848.86 meters (29,031.7 feet) as of 2020. This measurement was made by a team of Chinese surveyors using satellite data and ground measurements. The previous record, which was 8,848.86 meters (29,031.7 feet), was set in 2005 by a Chinese team. Mount Everest is located in the Mahalangur mountain range in the Himalayas, and straddles the border between Nepal and Tibet. It is a popular destination for mountaineers from around the world, and many people dream of reaching its summit.",
+            "history": [],
+            "usage": {
+                "prompt_tokens": 22,
+                "total_tokens": 181,
+                "completion_tokens": 159,
+                "elapsed": 12.067103862762451
+            }
+        }
+    },
+    "usage": {
+        "prompt_tokens": 22,
+        "total_tokens": 181,
+        "completion_tokens": 159,
+        "elapsed": 12.067103862762451
+    },
+    "output": []
+}
 ```
 
 #### Completion Prompt Output
