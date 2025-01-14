@@ -19,6 +19,20 @@ Alternatively, clone the repository and run:
 cd prompt-owl
 pip install -r requirements.txt
 ```
+Make sure to set up your Environment variables for your OpenAI-API compatible endpoint (ala vLLM, oLlama, etc.)
+The following is also located in `prowl/env.placeholder`
+```
+# To use this as your environment file, rename this to `.env`
+# If you want this to be system-wide, .bashrc it or add to PATH in Winblows
+
+# vLLM
+PROWL_VLLM_ENDPOINT=http://localhost:8000
+PROWL_MODEL=mistralai/Mistral-7B-Instruct-v0.2
+
+# Comfy
+PROWL_COMFY_ENDPOINT=127.0.0.1:8188
+```
+
 
 ## Backstory
 
@@ -37,7 +51,7 @@ After months of wrestling with LangChain’s linear and string-burdened approach
    - **Built-In Tools**: Create and utilize custom tools seamlessly.
    - **Hallucination Control**: Guide your LLM through a structured process to minimize off-track outputs.
    - **Multi-Generation Support**: Declare a variable multiple times and track its evolution like in a proper scripting language.
-4. **Augmented Prompt Engineering**: Design your script alongside the LLM, integrating human standards into machine-generated output.
+4. **Augmented Prompt Engineering**: Design your script alongside the LLM, integrating human standards into machine-generated output. It isn't "alignment", it is *conditioning*.
 
 ---
 
@@ -174,6 +188,8 @@ At the end, the `@comfy` tool is invoked to generate an image based on the craft
 
 Not exactly a quine in the classic sense, but the `@prowl` tool almost is—it can finish its own script and even use tools within its prompt. Early in development, I realized PrOwl scripts can evolve: an LLM-based app writing an LLM-based app. In other words, your `.prowl` files aren’t just scripts—they’re self-referential, self-improving, and fully capable of generating dynamic, tool-integrated content.
 
+The interesting natural conclusion of this dynamic is that an Agent could easily be made which prompts itself, or creates prompts for other agents; a meta-agent if you will.
+
 ---
 
 # PrOwl Agents?
@@ -232,6 +248,10 @@ prowl -folder=prompts/world/ input world world_class world_race -atomic -stop="\
 ```
 
 These options provide granular control over prompt composition and output behavior.
+
+# TODO / Known Issues
+- Fix the 1 token bug (make it possible to declare a variable with max 1 token)
+- Fix the CLI issue on the pypi package setup, still some pointing isssues.
 
 ---
 
