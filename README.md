@@ -1,7 +1,7 @@
 Below is a refactored version of your README. It keeps your original writing style and playful tone while streamlining the content. Icons for popular links (like Colab) have been added where appropriate, and examples are retained so users can see the framework in action.
 
 ---
-
+![logo_128](https://github.com/user-attachments/assets/83bcbe59-3ed5-41a4-b5ff-2a893dce81bc)
 # PrOwl v0.1  
 *Give your Prompts Wings!*
 
