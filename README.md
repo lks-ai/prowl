@@ -122,7 +122,7 @@ print(result.completion)  # See the completed prompt
 print(result.get())       # View final variable values as a dictionary
 ```
 
-Alternatively, using the ProwlStack:
+Alternatively, using the ProwlStack, you can run scripts as blocks in a stack and from multiple folders, getting nicely formatted and organized results:
 
 ```python
 from lib.stack import ProwlStack
