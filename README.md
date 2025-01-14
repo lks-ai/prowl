@@ -132,6 +132,28 @@ print(result.completion)  # Completed prompt output
 print(result.get())       # Final variable dictionary
 ```
 
+### Doing "Cliffs Notes" Summarized Speech to Text on any Audio File
+The prompt `sum_cliffs` can be found [here](https://github.com/lks-ai/prompt-library/blob/master/digest/sum_cliffs.prowl) and you can get it by cloning the [Prompt Library](https://github.com/lks-ai/prompt-library)
+```py
+import whisper
+
+input_audio = "/audio/any_audio_file_or_format.aac"
+
+model = whisper.load_model("base")
+r = model.transcribe(input_audio)
+
+print(r['text'])
+
+from prowl.lib.stack import ProwlStack
+import asyncio
+
+stack = ProwlStack(folder='prowl/prompts/digest/')
+
+rrs = asyncio.run(stack.run(['sum_cliffs'], inputs={'text': r['text']}, stops=["\n\n\n"]))
+
+print(rrs.out())
+```
+
 ---
 
 # Using Tools
