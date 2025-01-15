@@ -238,7 +238,7 @@ class prowl:
         # Automatic continuation on max_token length stop
         variable_name, int_arg, float_arg = var_attr
         usage = VLLM.Usage()
-        if finish_reason == 'length' and continue_ratio > 0.0:
+        if finish_reason == 'length' and continue_ratio > 0.0 and int_arg > 1:
             # If we have stopped because of length, continue with some portion of max tokens
             extra_tokens = int(float(int_arg) * continue_ratio)
             # further generate with prompt + generated_value
@@ -256,9 +256,7 @@ class prowl:
             completion = final_value + r['choices'][0]['text']
             if not multiline:
                 completion = prowl.strip_stops(completion, stops)
-            # print(r['usage'])
             usage.add(r['usage'])
-            # print(usage.dict())
         return completion, usage
     
     @staticmethod
