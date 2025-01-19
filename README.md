@@ -14,7 +14,6 @@ pip install prompt-owl
 Alternatively, clone the repository and run:
 ```bash
 cd prompt-owl
-pip install -r requirements.txt
 ```
 Make sure to set up your Environment variables for your OpenAI-API compatible endpoint (ala vLLM, oLlama, etc.)
 The following is also located in `prowl/env.placeholder`
