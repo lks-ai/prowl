@@ -10,7 +10,7 @@ from prowl.tools.script.tool import ScriptTool
 from prowl.tools.comfy.tool import ComfyTool
 from prowl.tools.each.tool import EachTool
 
-version = "0.1.14"
+version = "0.1.15"
 
 def parse_scripts(scripts:list[str]):
     sc, flags = [], {}
