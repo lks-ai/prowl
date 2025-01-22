@@ -21,12 +21,19 @@ The following is also located in `prowl/env.placeholder`
 # To use this as your environment file, rename this to `.env`
 # If you want this to be system-wide, .bashrc it or add to PATH in Winblows
 
-# vLLM
+# vLLM or any API for LLMs will go here
 PROWL_VLLM_ENDPOINT=http://localhost:8000
 PROWL_MODEL=mistralai/Mistral-7B-Instruct-v0.2
+# If using OpenRouter or another paid API, even openAI
+# PROWL_VENDOR_API_KEY=....
+# If using Ollama
+# PROWL_COMPLETIONS_ENDPOINT=/api/generate
 
 # Comfy
 PROWL_COMFY_ENDPOINT=127.0.0.1:8188
+
+# Fal (for the Fal.ai tool)
+# FAL_KEY=...
 ```
 
 
