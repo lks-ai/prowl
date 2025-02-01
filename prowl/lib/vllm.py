@@ -12,7 +12,7 @@ API_KEY = os.getenv('PROWL_VENDOR_API_KEY') or None
 class VLLM:
     def __init__(self, base_url, model="mistralai/Mistral-7B-Instruct-v0.2"):
         self.url = f"{base_url}{PROWL_COMPLETIONS_ENDPOINT}"
-        print(f"[INFO] Endpoint URL: {self.url}")
+        print(f"[INFO] Endpoint URL: {self.url}, model: {model}")
         self.headers = {"Content-Type": "application/json"}
         # If provided, add the API key to the Authorization header.
         if API_KEY:
@@ -174,7 +174,7 @@ if __name__ == "__main__":
     PROWL_MODEL = os.getenv('PROWL_MODEL')
     PROWL_VLLM_ENDPOINT = os.getenv('PROWL_VLLM_ENDPOINT')
     llm = VLLM(
-        f"{PROWL_VLLM_ENDPOINT}{PROWL_COMPLETIONS_ENDPOINT}",
+        f"{PROWL_VLLM_ENDPOINT}",
         model=PROWL_MODEL,
     )
 

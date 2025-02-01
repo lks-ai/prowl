@@ -5,7 +5,7 @@ with open('README.md', 'r', encoding='utf-8') as fh:
 
 setup(
     name='prompt-owl',
-    version='0.1.15',
+    version='0.1.17',
     packages=find_packages(where='.'),
     install_requires=[
         'requests>=2.31.0',

@@ -310,7 +310,7 @@ class prowl:
         return completion
 
     @staticmethod
-    async def fill(template:str, stops:list[str]=["\n\n", "\n#", "##"], variables:dict[str,Variable]=None, callbacks:dict=None, continue_ratio=0.0, stream_level=StreamLevel.NONE, stop_event=None, token_event=None, variable_event=None, script_name=None, silent:bool=False):
+    async def fill(template:str, stops:list[str]=["\n\n", "\n#", "##"], variables:dict[str,Variable]=None, callbacks:dict=None, continue_ratio=0.0, stream_level=StreamLevel.NONE, stop_event=None, token_event=None, variable_event=None, script_name=None, silent:bool=False, model:str=None):
         if variables is None:
             variables = {}
         # callbacks are dict with 'var_name' as key and function as value
@@ -334,7 +334,7 @@ class prowl:
         last_index = 0
         llm = VLLM(
             f"{PROWL_VLLM_ENDPOINT}",
-            model=PROWL_MODEL,
+            model=model or PROWL_MODEL,
         )
         # accumulate token usage here
         usage = VLLM.Usage()
