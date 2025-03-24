@@ -6,6 +6,8 @@
   <a href="https://colab.research.google.com/drive/1x-9mkpawC3kh_3FKJcl7QE3UkRkvtAXL"><img src="https://img.shields.io/badge/PrOwl%20Colab-100000?style=for-the-badge&logo=google-colab&color=yellow&logoColor=red" alt="PrOwl Colab"/></a>
 </p>
 
+Come Join the Prompt-Owl community on [Discord](https://discord.gg/CeZX7QaShm)
+
 Welcome to the repository of **Pre-Built Prompts for PrOwl**! Here, you will find a comprehensive collection of core and specialized prompts designed to enhance your LLM prompting experience with PrOwl.
 
 ## 🚀 Getting Started

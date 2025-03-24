@@ -34,9 +34,13 @@ class prowl:
     
     @staticmethod
     def load(path):
-        with open(path, "r") as f:
-            o = f.read()
-        return o
+        try:
+            with open(path, "r") as f:
+                o = f.read()
+            return o
+        except Exception as e:
+            pass
+        return None
 
     class Variable:
         def __init__(self, name:str=None, arg:tuple=None, value:str=None, list:list=None, data:dict=None, usage:VLLM.Usage=None):
@@ -277,7 +281,7 @@ class prowl:
         # Insure that the LLM resulting generation
         variable_name, int_arg, float_arg = variable_attributes
         finish_reason = result_choice['finish_reason']
-        completion = result_choice["text"].strip()
+        completion:str = result_choice["text"].strip()
         
         async def ac(stop=None):
             # Helper function for automatic continuation on max_token length stop
@@ -291,7 +295,7 @@ class prowl:
             if "\n" in completion:
                 # print("HAS A RETURN!")
                 gvt = completion.split("\n", 2)
-                gvi = gvt[0].strip(prowl.PATTERN_STRIP)
+                gvi:str = gvt[0].strip(prowl.PATTERN_STRIP)
                 if gvi.endswith(retry_on_endswith):
                     completion = ""
                 completion = gvi

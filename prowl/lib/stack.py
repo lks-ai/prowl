@@ -58,7 +58,7 @@ class ProwlStack:
     def add_task(self, name, folder='', reinspect=False):
         # add a task to the available tasks pool
         try:
-            loaded = prowl.load(folder + name + '.prowl')
+            loaded = prowl.load(f"{folder}{name}.prowl") or prowl.load(f"{folder}{name}.md")
             self.tasks[name] = {
                 'folder': folder,
                 'code': loaded,
@@ -67,7 +67,7 @@ class ProwlStack:
             if reinspect:
                 self.inspect()
         except Exception as e:
-            print(f'Maybe `{name}.prowl` script not found in folder `{folder}`')
+            print(f'Maybe `{name}.prowl` or `{name}.md` prompt not found in folder `{folder}`')
             print(e)
     
     def add_tool(self, tool:ProwlTool, reinspect=True):
@@ -103,8 +103,10 @@ class ProwlStack:
                 folder += "/"
             self.print(f"Checking {folder} for prowl files...")
             prowl_files = glob.glob(os.path.join(folder, '*.prowl'))
+            md_files = glob.glob(os.path.join(folder, '*.md'))
+            prowl_files.extend(md_files)
             for f in prowl_files:
-                n = os.path.basename(f).replace('.prowl', '')
+                n = os.path.basename(f).replace('.prowl', '').replace('.md', '')
                 if self.load_files:
                     if n not in self.load_files:
                         continue

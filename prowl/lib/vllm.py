@@ -158,6 +158,7 @@ class VLLM:
                             r['usage']['elapsed'] = time.time() - st
                         else:
                             print("[WARNING] No 'usage' key in asynchronous response.")
+                            print(r)
                         return r
         except aiohttp.ClientError as client_err:
             print(f"[ERROR] AIOHTTP ClientError during run_async(): {client_err}")
