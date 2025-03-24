@@ -1,10 +1,13 @@
 ![logo_128](https://github.com/user-attachments/assets/83bcbe59-3ed5-41a4-b5ff-2a893dce81bc)
-# PrOwl v0.1  
+# Prompt-Owl v0.1  
 *Give your Prompts Wings!*
 
 ## Colab Demos  
 - [![Colab](https://img.shields.io/badge/Google%20Colab-%23F9AB00.svg?style=for-the-badge&logo=google-colab&logoColor=white) PrOwl Demo](https://colab.research.google.com/drive/1x-9mkpawC3kh_3FKJcl7QE3UkRkvtAXL?usp=sharing)  
 - [![Colab](https://img.shields.io/badge/Google%20Colab-%23F9AB00.svg?style=for-the-badge&logo=google-colab&logoColor=white) Scripting with PrOwl](https://colab.research.google.com/drive/1_StW54A8B4mAdRa4piBRxFxnhhyaaYuS#scrollTo=oTqFPlXHjZTN)
+
+## Prompt-Owl Community
+Come Join the Prompt-Owl community on [Discord](https://discord.gg/CeZX7QaShm)
 
 ## Installation
 PrOwl is available on PyPi:  
